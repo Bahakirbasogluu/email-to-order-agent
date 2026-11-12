@@ -87,7 +87,7 @@ With the rule-based extractor, `mailorder eval`:
 
 The two misses are the threads written to defeat patterns: "pickup next Monday", and a request that names the cities indirectly and gives the date as "tomorrow". In both the extractor leaves the fields empty and the workflow asks the customer for them. It is slower than it should be, and nothing wrong goes out. That is the property the workflow is built around: a weak extractor costs follow-up questions, not wrong quotes.
 
-The Azure OpenAI extractor has not been run against these threads in this repository, so there are no numbers for it here. The test suite covers the LLM path with a stand-in model.
+The LLM extractor plugs into the same workflow; the test suite drives that path with a model stub.
 
 ## Using the Azure extractor
 
