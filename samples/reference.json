@@ -1,0 +1,29 @@
+{
+  "currency": "EUR",
+  "minimum_charge": "350.00",
+  "cities": {
+    "Istanbul": ["İstanbul"],
+    "Izmir": ["İzmir"],
+    "Ankara": [],
+    "Bursa": [],
+    "Munich": ["Münih", "München"],
+    "Milan": ["Milano"],
+    "Rotterdam": [],
+    "Lyon": []
+  },
+  "lanes": [
+    {"from": "Istanbul", "to": "Munich", "per_kg": "0.42", "days": 6},
+    {"from": "Istanbul", "to": "Rotterdam", "per_kg": "0.48", "days": 7},
+    {"from": "Istanbul", "to": "Milan", "per_kg": "0.39", "days": 5},
+    {"from": "Izmir", "to": "Rotterdam", "per_kg": "0.51", "days": 8},
+    {"from": "Izmir", "to": "Munich", "per_kg": "0.45", "days": 7},
+    {"from": "Bursa", "to": "Milan", "per_kg": "0.40", "days": 5},
+    {"from": "Ankara", "to": "Izmir", "per_kg": "0.12", "days": 1}
+  ],
+  "customers": [
+    {"id": "C100", "name": "Kuzey Ambalaj Sanayi A.Ş.", "domains": ["kuzeyambalaj.example"], "discount_percent": "5"},
+    {"id": "C200", "name": "Boğaziçi Tekstil A.Ş.", "domains": ["bogazicitekstil.example"], "discount_percent": "0"},
+    {"id": "C300", "name": "Northwind Supplies Ltd.", "domains": ["northwind.example", "northwind-logistics.example"], "discount_percent": "8"},
+    {"id": "C400", "name": "Anadolu Yedek Parça Ltd. Şti.", "domains": ["anadoluyedek.example"], "discount_percent": "0"}
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "today": "2026-03-02",
+  "threads": [
+    {
+      "thread_id": "t01",
+      "sender": "satinalma@kuzeyambalaj.example",
+      "note": "",
+      "emails": [
+        {
+          "subject": "Teklif talebi",
+          "body": "Merhaba,\n\n12.03.2026 tarihinde İstanbul'dan Münih'e 8 palet, toplam 4.200 kg otomotiv parçası sevkiyatı için teklif rica ederim.\n\nİyi çalışmalar"
+        }
+      ],
+      "expected": {
+        "actions": [
+          "send_quote"
+        ],
+        "status": "quoted",
+        "request": {
+          "origin": "Istanbul",
+          "destination": "Munich",
+          "pickup_date": "2026-03-12",
+          "weight_kg": "4200"
+        }
+      }
+    },
+    {
+      "thread_id": "t02",
+      "sender": "ops@northwind.example",
+      "note": "",
+      "emails": [
+        {
+          "subject": "Quote request",
+          "body": "Hello,\n\nCould you quote a shipment from Izmir to Rotterdam? Pickup on 2026-03-18, 12 pallets, 6,500 kg of textile.\n\nThanks"
+        }
+      ],
+      "expected": {
+        "actions": [
+          "send_quote"
+        ],
+        "status": "quoted",
+        "request": {
+          "origin": "Izmir",
+          "destination": "Rotterdam",
+          "pickup_date": "2026-03-18",
+          "weight_kg": "6500"
+        }
+      }
+    },
+    {
+      "thread_id": "t03",
+      "sender": "lojistik@bogazicitekstil.example",
+      "note": "missing date and weight, supplied in the reply",
+      "emails": [
+        {
+          "subject": "Sevkiyat",
+          "body": "Merhaba, İstanbul'dan Rotterdam'a kumaş sevkiyatımız olacak, teklif alabilir miyiz?"
+        },
+        {
+          "subject": "Re: Sevkiyat",
+          "body": "Yükleme 20.03.2026, toplam 3.000 kg."
+        }
+      ],
+      "expected": {
+        "actions": [
+          "ask_missing",
+          "send_quote"
+        ],
+        "status": "quoted",
+        "request": {
+          "origin": "Istanbul",
+          "destination": "Rotterdam",
+          "pickup_date": "2026-03-20",
+          "weight_kg": "3000"
+        }
+      }
+    },
+    {
+      "thread_id": "t04",
+      "sender": "ops@northwind.example",
+      "note": "missing weight",
+      "emails": [
+        {
+          "subject": "Shipment Istanbul - Milan",
+          "body": "Hi, we need a quote for a shipment from Istanbul to Milan, pickup 24/03/2026. Machine spares on 3 pallets."
+        },
+        {
+          "subject": "Re: Shipment Istanbul - Milan",
+          "body": "It is 950 kg in total."
+        }
+      ],
+      "expected": {
+        "actions": [
+          "ask_missing",
+          "send_quote"
+        ],
+        "status": "quoted",
+        "request": {
+          "origin": "Istanbul",
+          "destination": "Milan",
+          "pickup_date": "2026-03-24",
+          "weight_kg": "950"
+        }
+      }
+    },
+    {
+      "thread_id": "t05",
+      "sender": "ahmet.demo@freemail.example",
+      "note": "sender is not a known customer",
+      "emails": [
+        {
+          "subject": "Teklif",
+          "body": "Merhaba, İzmir'den Münih'e 500 kg yük için 15.03.2026 yüklemeli teklif rica ederim."
+        }
+      ],
+      "expected": {
+        "actions": [
+          "escalate"
+        ],
+        "status": "escalated",
+        "request": null
+      }
+    },
+    {
+      "thread_id": "t06",
+      "sender": "muhasebe@kuzeyambalaj.example",
+      "note": "not a shipment request",
+      "emails": [
+        {
+          "subject": "Fatura",
+          "body": "Merhaba, geçen ayın faturasını tekrar gönderebilir misiniz? Kayıtlarımızda göremedik."
+        }
+      ],
+      "expected": {
+        "actions": [
+          "ignore"
+        ],
+        "status": "ignored",
+        "request": null
+      }
+    },
+    {
+      "thread_id": "t07",
+      "sender": "ops@northwind.example",
+      "note": "automatic reply",
+      "emails": [
+        {
+          "subject": "Automatic reply: out of office",
+          "body": "I am out of the office until 9 March and will answer when I am back."
+        }
+      ],
+      "expected": {
+        "actions": [
+          "ignore"
+        ],
+        "status": "ignored",
+        "request": null
+      }
+    },
+    {
+      "thread_id": "t08",
+      "sender": "satinalma@anadoluyedek.example",
+      "note": "lane is not in the rate card",
+      "emails": [
+        {
+          "subject": "Teklif talebi",
+          "body": "Merhaba, Ankara'dan Lyon'a 1.200 kg yedek parça sevkiyatı için 19.03.2026 yüklemeli teklif rica ederiz."
+        }
+      ],
+      "expected": {
+        "actions": [
+          "escalate"
+        ],
+        "status": "escalated",
+        "request": null
+      }
+    },
+    {
+      "thread_id": "t09",
+      "sender": "ops@northwind.example",
+      "note": "pickup date is in the past",
+      "emails": [
+        {
+          "subject": "Quote",
+          "body": "Please quote from Istanbul to Munich, 2,000 kg, pickup 2026-02-20."
+        }
+      ],
+      "expected": {
+        "actions": [
+          "escalate"
+        ],
+        "status": "escalated",
+        "request": null
+      }
+    },
+    {
+      "thread_id": "t10",
+      "sender": "satinalma@anadoluyedek.example",
+      "note": "weight in tonnes, date without a year",
+      "emails": [
+        {
+          "subject": "Nakliye teklifi",
+          "body": "Bursa'dan Milano'ya 2,5 ton makine parçası gönderilecek, yükleme 16 Mart. Teklifinizi bekliyoruz."
+        }
+      ],
+      "expected": {
+        "actions": [
+          "send_quote"
+        ],
+        "status": "quoted",
+        "request": {
+          "origin": "Bursa",
+          "destination": "Milan",
+          "pickup_date": "2026-03-16",
+          "weight_kg": "2500"
+        }
+      }
+    },
+    {
+      "thread_id": "t11",
+      "sender": "ops@northwind-logistics.example",
+      "note": "relative date",
+      "emails": [
+        {
+          "subject": "Quote needed",
+          "body": "Hello, we need a quote for Istanbul to Rotterdam, 1,400 kg, pickup next Monday."
+        }
+      ],
+      "expected": {
+        "actions": [
+          "send_quote"
+        ],
+        "status": "quoted",
+        "request": {
+          "origin": "Istanbul",
+          "destination": "Rotterdam",
+          "pickup_date": "2026-03-09",
+          "weight_kg": "1400"
+        }
+      }
+    },
+    {
+      "thread_id": "t12",
+      "sender": "lojistik@bogazicitekstil.example",
+      "note": "form-like layout",
+      "emails": [
+        {
+          "subject": "Teklif",
+          "body": "Çıkış: İzmir\nVarış: Münih\nTarih: 25.03.2026\nAğırlık: 1.800 kg\n\nTeklifinizi rica ederiz."
+        }
+      ],
+      "expected": {
+        "actions": [
+          "send_quote"
+        ],
+        "status": "quoted",
+        "request": {
+          "origin": "Izmir",
+          "destination": "Munich",
+          "pickup_date": "2026-03-25",
+          "weight_kg": "1800"
+        }
+      }
+    },
+    {
+      "thread_id": "t13",
+      "sender": "satinalma@kuzeyambalaj.example",
+      "note": "weight never supplied",
+      "emails": [
+        {
+          "subject": "Teklif",
+          "body": "İstanbul'dan Milano'ya ambalaj malzemesi sevkiyatı için teklif rica ederiz."
+        },
+        {
+          "subject": "Re: Teklif",
+          "body": "Yükleme 27.03.2026 olacak."
+        },
+        {
+          "subject": "Re: Teklif",
+          "body": "Ağırlığı henüz bilmiyoruz, üretim bitince netleşecek."
+        }
+      ],
+      "expected": {
+        "actions": [
+          "ask_missing",
+          "ask_missing",
+          "escalate"
+        ],
+        "status": "escalated",
+        "request": null
+      }
+    },
+    {
+      "thread_id": "t14",
+      "sender": "ops@northwind.example",
+      "note": "reply corrects an earlier value",
+      "emails": [
+        {
+          "subject": "Quote request",
+          "body": "Hi, please quote 2,000 kg from Izmir to Munich."
+        },
+        {
+          "subject": "Re: Quote request",
+          "body": "Pickup is 2026-03-20. Correction: the weight is 1,200 kg, not what I wrote before."
+        }
+      ],
+      "expected": {
+        "actions": [
+          "ask_missing",
+          "send_quote"
+        ],
+        "status": "quoted",
+        "request": {
+          "origin": "Izmir",
+          "destination": "Munich",
+          "pickup_date": "2026-03-20",
+          "weight_kg": "1200"
+        }
+      }
+    },
+    {
+      "thread_id": "t15",
+      "sender": "ops@northwind.example",
+      "note": "destination named before origin",
+      "emails": [
+        {
+          "subject": "Shipment",
+          "body": "We will ship 800 kg to Rotterdam from Istanbul on 30 March 2026. What would it cost?"
+        }
+      ],
+      "expected": {
+        "actions": [
+          "send_quote"
+        ],
+        "status": "quoted",
+        "request": {
+          "origin": "Istanbul",
+          "destination": "Rotterdam",
+          "pickup_date": "2026-03-30",
+          "weight_kg": "800"
+        }
+      }
+    },
+    {
+      "thread_id": "t16",
+      "sender": "satinalma@anadoluyedek.example",
+      "note": "relative date, indirect wording",
+      "emails": [
+        {
+          "subject": "Acil",
+          "body": "Yarın Ankara depomuzdan İzmir'deki müşterimize 600 kilo ürün gidecek, fiyat alabilir miyiz?"
+        }
+      ],
+      "expected": {
+        "actions": [
+          "send_quote"
+        ],
+        "status": "quoted",
+        "request": {
+          "origin": "Ankara",
+          "destination": "Izmir",
+          "pickup_date": "2026-03-03",
+          "weight_kg": "600"
+        }
+      }
+    }
+  ]
+}
