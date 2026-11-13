@@ -1,5 +1,7 @@
 # mailorder
 
+[![CI](https://github.com/Bahakirbasogluu/email-to-order-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/Bahakirbasogluu/email-to-order-agent/actions/workflows/ci.yml)
+
 An agent workflow for a shared order mailbox. It reads a free-form shipment request, works out what is missing, asks the customer for it, and replies with a quote once the request is complete. Anything it should not decide alone goes to a person with the reason.
 
 The design comes from an e-mail-to-order system I built for a logistics operation. The code here is written from scratch and runs on invented e-mails, customers and rates; it contains no client code or data.
